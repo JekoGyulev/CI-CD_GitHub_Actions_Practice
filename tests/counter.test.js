@@ -15,4 +15,11 @@ describe('Counter API', () => {
     const res2 = await request(app).post('/api/counter/increment');
     expect(res2.body.counter).toBe(initial + 1);
   });
+
+  it('should return number', async() => {
+    const res = await request(app).get('/api/counter');
+    const counter = res.body.counter;
+
+    expect(typeof counter).toBe('number');
+  });
 });
