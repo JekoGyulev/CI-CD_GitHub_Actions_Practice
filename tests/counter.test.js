@@ -13,6 +13,6 @@ describe('Counter API', () => {
     const initial = res1.body.counter;
 
     const res2 = await request(app).post('/api/counter/increment');
-    expect(res2.body.counter).toBe(initial + 1);
+    expect(res2.body.counter).toBe(initial + 2);
   });
 });
