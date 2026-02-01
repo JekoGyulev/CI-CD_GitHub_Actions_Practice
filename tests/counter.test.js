@@ -22,4 +22,11 @@ describe('Counter API', () => {
 
     expect(typeof counter).toBe('number');
   });
+
+  it('should reset counter to 0', async() => {
+    const res = await request(app).patch('/api/counter/reset');
+    const counter = res.body.counter;
+    
+    expect(counter).toBe(0);
+  });
 });
