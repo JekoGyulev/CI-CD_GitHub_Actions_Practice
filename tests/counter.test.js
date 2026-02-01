@@ -29,4 +29,28 @@ describe('Counter API', () => {
     
     expect(counter).toBe(0);
   });
+
+  it('should disable increment and reset counter buttons', async () => {
+
+    const res = await request(app).post('/api/counter/toggle');
+    const counterEnabled = res.body.enabled;
+
+    expect(counterEnabled).toBe(false);
+  });
+
+  it('should stay 1 after being disabled', async () => {
+
+    const res = await request(app).post('/api/counter/increment');
+    const counter = res.body.counter;
+
+    const resToggle = await request(app).post('/api/counter/toggle');
+    const isEnabled = resToggle.body.enabled;
+
+    await request(app).post('/api/counter/increment');
+
+    expect(counter).toBe(1);
+    expect(isEnabled).toBe(true);
+  });
+
+
 });
