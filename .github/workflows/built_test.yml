@@ -30,7 +30,7 @@ jobs:
 
     needs: build_and_test
 
-    if:  github.event == 'push'
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     
     runs-on: ubuntu-latest
 
