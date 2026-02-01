@@ -8,6 +8,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 let counter = 0;
+let counterEnabled = true;
+
+app.post('/api/counter/toggle', (req, res) => {
+  counterEnabled = !counterEnabled;
+  res.json({ enabled: counterEnabled })
+});
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

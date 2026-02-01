@@ -16,5 +16,20 @@ document.getElementById('reset-counter-btn').addEventListener('click', async () 
 });
 
 
+document.getElementById('toggleBtn').addEventListener('click', async () => {
+
+  const response = await fetch('/api/counter/toggle', { method: 'POST'});
+  const data = await response.json();
+
+  let enabled = data.enabled;
+
+  document.getElementById('toggleBtn').textContent = enabled ? 'Disable Counter' : 'Enable Counter';
+  document.getElementById('increment-counter-btn').disabled = !enabled;
+  document.getElementById('reset-counter-btn').disabled = !enabled;
+
+
+})
+
+
 
 loadCounter();
