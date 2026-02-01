@@ -4,9 +4,17 @@ async function loadCounter() {
   document.getElementById('counter').innerText = `Counter: ${data.counter}`;
 }
 
-document.getElementById('btn').addEventListener('click', async () => {
+document.getElementById('increment-counter-btn').addEventListener('click', async () => {
   await fetch('/api/counter/increment', { method: 'POST' });
   loadCounter();
 });
+
+
+document.getElementById('reset-counter-btn').addEventListener('click', async () => {
+  await fetch('/api/counter/reset', { method : 'PATCH'});
+  loadCounter();
+});
+
+
 
 loadCounter();

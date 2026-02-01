@@ -22,6 +22,11 @@ app.post('/api/counter/increment', (req, res) => {
   res.json({ counter });
 });
 
+app.patch('/api/counter/reset', (req, res) => {
+  counter = 0;
+  res.json({ counter })
+});
+
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
